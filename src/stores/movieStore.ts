@@ -1,4 +1,3 @@
-// src/stores/movieStore.ts
 import { defineStore } from 'pinia';
 import type { Movie } from '@/types/movie';
 import { tmdbService } from '@/services/tmdbService';
@@ -31,6 +30,35 @@ export const useMovieStore = defineStore('movies', {
     },
     netflixOriginals: (state) => {
       return state.movies.filter(movie => movie.isOriginal);
+    },
+    // New getters for different categories
+    actionMovies: (state) => {
+      return state.movies.filter(movie => 
+        movie.genre.some(g => ['Action', 'Aventure', 'Thriller'].includes(g))
+      ).slice(0, 10);
+    },
+    dramaMovies: (state) => {
+      return state.movies.filter(movie => 
+        movie.genre.some(g => ['Drame', 'Drama'].includes(g))
+      ).slice(0, 10);
+    },
+    comedyMovies: (state) => {
+      return state.movies.filter(movie => 
+        movie.genre.some(g => ['Comédie', 'Comedy'].includes(g))
+      ).slice(0, 10);
+    },
+    scienceFictionMovies: (state) => {
+      return state.movies.filter(movie => 
+        movie.genre.some(g => ['Science-Fiction', 'Sci-Fi', 'Fantasy'].includes(g))
+      ).slice(0, 10);
+    },
+    familyMovies: (state) => {
+      return state.movies.filter(movie => 
+        movie.genre.some(g => ['Familial', 'Family', 'Animation'].includes(g))
+      ).slice(0, 10);
+    },
+    moviesByType: (state) => (type: string) => {
+      return state.movies.filter(movie => movie.type === type).slice(0, 10);
     },
     allGenres: (state) => {
       const genreSet = new Set<string>();

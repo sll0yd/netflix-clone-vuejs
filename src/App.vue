@@ -20,5 +20,12 @@ body {
 
 #app {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* This helps push footer to bottom */
+#app > :nth-child(2) {
+  flex: 1;
 }
 </style>

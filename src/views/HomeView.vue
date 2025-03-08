@@ -11,7 +11,12 @@
       <main class="content">
         <MovieRow title="Originals Netflix" :movies="originals" />
         <MovieRow title="Tendances" :movies="trending" />
-        <MovieRow title="Tous les films" :movies="allMovies" />
+        <MovieRow title="Films d'action" :movies="actionMovies" />
+        <MovieRow title="Drames" :movies="dramaMovies" />
+        <MovieRow title="Comédies" :movies="comedyMovies" />
+        <MovieRow title="Science-Fiction" :movies="sciFiMovies" />
+        <MovieRow title="Films familiaux" :movies="familyMovies" />
+        <MovieRow title="Séries TV" :movies="tvShows" />
       </main>
     </template>
   </div>
@@ -29,7 +34,12 @@ const loading = computed(() => movieStore.loading);
 const featuredMovie = computed(() => movieStore.featuredMovie);
 const originals = computed(() => movieStore.netflixOriginals);
 const trending = computed(() => movieStore.trendingMovies);
-const allMovies = computed(() => movieStore.movies);
+const actionMovies = computed(() => movieStore.actionMovies);
+const dramaMovies = computed(() => movieStore.dramaMovies);
+const comedyMovies = computed(() => movieStore.comedyMovies);
+const sciFiMovies = computed(() => movieStore.scienceFictionMovies);
+const familyMovies = computed(() => movieStore.familyMovies);
+const tvShows = computed(() => movieStore.moviesByType('series'));
 
 onMounted(async () => {
   await movieStore.fetchAllMovies();
