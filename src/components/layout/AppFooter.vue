@@ -1,89 +1,148 @@
 <template>
-  <footer class="app-footer">
-    <div class="footer-content">
-      <div class="footer-links">
-        <div class="link-column">
-          <a href="#">FAQ</a>
-          <a href="#">Investor Relations</a>
-          <a href="#">Ways to Watch</a>
-          <a href="#">Corporate Information</a>
-          <a href="#">Netflix Originals</a>
-        </div>
-        <div class="link-column">
-          <a href="#">Help Center</a>
-          <a href="#">Jobs</a>
-          <a href="#">Terms of Use</a>
-          <a href="#">Contact Us</a>
-        </div>
-        <div class="link-column">
-          <a href="#">Account</a>
-          <a href="#">Redeem Gift Cards</a>
-          <a href="#">Privacy</a>
-          <a href="#">Speed Test</a>
-        </div>
-        <div class="link-column">
-          <a href="#">Media Center</a>
-          <a href="#">Buy Gift Cards</a>
-          <a href="#">Cookie Preferences</a>
-          <a href="#">Legal Notices</a>
-        </div>
+  <header class="app-header">
+    <div class="header-content">
+      <div class="left-section">
+        <router-link to="/" class="logo">
+          <img src="@/assets/images/netflix-logo.png" alt="Netflix" class="netflix-logo" />
+        </router-link>
+        <nav class="main-nav">
+          <router-link to="/">Home</router-link>
+          <router-link to="/browse">TV Shows</router-link>
+          <router-link to="/browse">Movies</router-link>
+          <router-link to="/browse?filter=new">New & Popular</router-link>
+          <router-link to="/my-list">My List</router-link>
+        </nav>
       </div>
-      <div class="copyright">
-        <p>© 2025 Netflix Clone Project. This is not the real Netflix.</p>
+      <div class="right-section">
+        <div class="search-container">
+          <input 
+            type="text" 
+            placeholder="Titles, people, genres" 
+            v-model="searchQuery"
+            @keyup.enter="handleSearch"
+          />
+          <button class="search-btn" @click="handleSearch">
+            🔍
+          </button>
+        </div>
+        <div class="user-profile">
+          <span class="profile-icon">👤</span>
+        </div>
       </div>
     </div>
-  </footer>
+  </header>
 </template>
 
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useMovieStore } from '@/stores/movieStore';
+
+const router = useRouter();
+const movieStore = useMovieStore();
+const searchQuery = ref<string>('');
+
+const handleSearch = (): void => {
+  if (searchQuery.value.trim()) {
+    movieStore.searchMovies(searchQuery.value);
+    router.push('/search');
+  }
+};
+</script>
+
 <style scoped>
-.app-footer {
-  background-color: #141414;
-  color: #757575;
-  padding: 3rem 2rem;
-  margin-top: 2rem;
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  transition: background-color 0.3s;
+  padding: 0.8rem 2rem;
+  height: 80px; /* Fixed height for header */
 }
 
-.footer-content {
-  max-width: 1000px;
+.app-header.scrolled {
+  background-color: #141414;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1800px;
   margin: 0 auto;
 }
 
-.footer-links {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-}
-
-@media (max-width: 768px) {
-  .footer-links {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .footer-links {
-    grid-template-columns: 1fr;
-  }
-}
-
-.link-column {
+.left-section {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  align-items: center;
 }
 
-.link-column a {
-  color: #757575;
+.logo {
+  margin-right: 2rem;
   text-decoration: none;
-  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
 }
 
-.link-column a:hover {
-  text-decoration: underline;
+.netflix-logo {
+  height: 60px;
+  width: auto;
 }
 
-.copyright {
-  margin-top: 2rem;
-  font-size: 0.8rem;
+.main-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.main-nav a {
+  color: #e5e5e5;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.main-nav a:hover,
+.main-nav a.router-link-active {
+  color: white;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-container input {
+  background-color: rgba(0, 0, 0, 0.75);
+  border: 1px solid #333;
+  color: white;
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+  border-radius: 4px;
+  outline: none;
+}
+
+.search-btn {
+  position: absolute;
+  right: 0.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.user-profile {
+  cursor: pointer;
+}
+
+.profile-icon {
+  font-size: 1.5rem;
 }
 </style>
