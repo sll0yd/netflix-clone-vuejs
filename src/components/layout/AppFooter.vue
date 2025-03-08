@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="copyright">
-        <p>© 2023 Netflix Clone Project. This is not the real Netflix.</p>
+        <p>© 2025 Netflix Clone Project. This is not the real Netflix.</p>
       </div>
     </div>
   </footer>
