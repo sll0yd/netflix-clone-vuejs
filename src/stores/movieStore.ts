@@ -1,6 +1,7 @@
+// src/stores/movieStore.ts
 import { defineStore } from 'pinia';
-import { movies } from '@/data/movies';
 import type { Movie } from '@/types/movie';
+import { tmdbService } from '@/services/tmdbService';
 
 interface MovieState {
   movies: Movie[];
@@ -13,7 +14,7 @@ interface MovieState {
 
 export const useMovieStore = defineStore('movies', {
   state: (): MovieState => ({
-    movies: movies,
+    movies: [],
     featuredMovie: null,
     filteredMovies: [],
     genres: [],
@@ -41,11 +42,39 @@ export const useMovieStore = defineStore('movies', {
   },
   
   actions: {
+    async fetchAllMovies(): Promise<void> {
+      this.loading = true;
+      try {
+        const [trending, originals] = await Promise.all([
+          tmdbService.getTrending(),
+          tmdbService.getNetflixOriginals()
+        ]);
+        
+        // Combine and remove duplicates
+        const allMovies = [...trending];
+        for (const original of originals) {
+          if (!allMovies.some(m => m.id === original.id)) {
+            allMovies.push(original);
+          }
+        }
+        
+        this.movies = allMovies;
+        this.filteredMovies = allMovies;
+        this.setFeaturedMovie();
+      } catch (error) {
+        console.error('Failed to fetch movies:', error);
+      } finally {
+        this.loading = false;
+      }
+    },
+    
     setFeaturedMovie(): void {
-      // Randomly select a trending movie for the banner
+      // Sélectionnez aléatoirement un film tendance pour la bannière
       const trendingMovies = this.movies.filter(movie => movie.isTrending);
-      const randomIndex = Math.floor(Math.random() * trendingMovies.length);
-      this.featuredMovie = trendingMovies[randomIndex];
+      if (trendingMovies.length > 0) {
+        const randomIndex = Math.floor(Math.random() * trendingMovies.length);
+        this.featuredMovie = trendingMovies[randomIndex];
+      }
     },
     
     filterMoviesByGenre(genre: string): void {
@@ -58,18 +87,24 @@ export const useMovieStore = defineStore('movies', {
       }
     },
     
-    searchMovies(query: string): void {
+    async searchMovies(query: string): Promise<void> {
+      this.loading = true;
       this.searchQuery = query;
-      if (!query.trim()) {
-        this.filteredMovies = this.movies;
-        return;
-      }
       
-      const searchTerm = query.toLowerCase();
-      this.filteredMovies = this.movies.filter(movie => 
-        movie.title.toLowerCase().includes(searchTerm) || 
-        movie.description.toLowerCase().includes(searchTerm)
-      );
+      try {
+        if (!query.trim()) {
+          this.filteredMovies = this.movies;
+          return;
+        }
+        
+        const results = await tmdbService.searchMovies(query);
+        this.filteredMovies = results;
+      } catch (error) {
+        console.error('Failed to search movies:', error);
+        this.filteredMovies = [];
+      } finally {
+        this.loading = false;
+      }
     }
   }
 });

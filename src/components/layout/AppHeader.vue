@@ -59,7 +59,7 @@ const handleSearch = (): void => {
   z-index: 1000;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
   transition: background-color 0.3s;
-  padding: 0.7rem 2rem;
+  padding: 0.8rem 2rem;
 }
 
 .app-header.scrolled {
