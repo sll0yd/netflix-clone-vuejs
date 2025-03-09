@@ -1,61 +1,34 @@
-# netflix-clone-vuejs
+# Netflix Clone with Vue.js and TypeScript
 
-This template should help get you started developing with Vue 3 in Vite.
+A responsive Netflix clone built with Vue 3, TypeScript, and The Movie Database (TMDB) API.
 
-## Recommended IDE Setup
+**Live Demo:** [https://sll0yd.github.io/netflix-clone-vuejs](https://sll0yd.github.io/netflix-clone-vuejs)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
 
-## Type Support for `.vue` Imports in TS
+- Responsive design that mimics Netflix's user interface
+- Dynamic content from TMDB API
+- Movie/TV show browsing by different categories and genres
+- Detailed movie/show information pages
+- Search functionality
+- Auto-rotating featured content in hero banner
+- Smooth transitions and animations
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Technologies Used
 
-## Customize configuration
+- Vue 3
+- TypeScript
+- Vite
+- Vue Router
+- Pinia (State Management)
+- TMDB API
+- CSS (with responsive design)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## Installation
 
-## Project Setup
+Follow these steps to set up the project locally:
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/sll0yd/netflix-clone-vuejs.git
+   cd netflix-clone-vuejs
