@@ -1,106 +1,105 @@
-# Netflix Clone with Vue.js and TypeScript
+# Clone de Netflix avec Vue.js et TypeScript
 
-A responsive Netflix clone built with Vue 3, TypeScript, and The Movie Database (TMDB) API.
+Un clone responsive de Netflix construit avec Vue 3, TypeScript et l'API The Movie Database (TMDB).
 
-**Live Demo:** [https://sll0yd.github.io/netflix-clone-vuejs](https://sll0yd.github.io/netflix-clone-vuejs)
+**Démo en ligne:** [https://sll0yd.github.io/netflix-clone-vuejs](https://sll0yd.github.io/netflix-clone-vuejs)
 
-## Features
+## Fonctionnalités
 
-- Responsive design that mimics Netflix's user interface
-- Dynamic content from TMDB API
-- Movie/TV show browsing by different categories and genres
-- Detailed movie/show information pages
-- Search functionality
-- Auto-rotating featured content in hero banner
-- Smooth transitions and animations
+- Design responsive qui imite l'interface utilisateur de Netflix
+- Contenu dynamique depuis l'API TMDB
+- Navigation des films/séries TV par différentes catégories et genres
+- Pages détaillées d'informations sur les films/séries
+- Fonctionnalité de recherche
+- Contenu vedette à rotation automatique dans la bannière principale
+- Transitions et animations fluides
 
-## Technologies Used
+## Technologies Utilisées
 
 - Vue 3
 - TypeScript
 - Vite
 - Vue Router
-- Pinia (State Management)
-- TMDB API
-- CSS (with responsive design)
+- Pinia (Gestion d'État)
+- API TMDB
+- CSS (avec design responsive)
 
 ## Installation
 
-Follow these steps to set up the project locally:
+Suivez ces étapes pour configurer le projet localement:
 
-1. Clone the repository:
+1. Clonez le dépôt:
    ```bash
    git clone https://github.com/sll0yd/netflix-clone-vuejs.git
    cd netflix-clone-vuejs
    ```
 
-2. Install dependencies:
+2. Installez les dépendances:
    ```bash
    npm install
    ```
 
-3. Create a `.env` file in the root directory and add your TMDB API key:
+3. Créez un fichier `.env` dans le répertoire racine et ajoutez votre clé API TMDB:
    ```
-   VITE_TMDB_API_KEY=your_tmdb_api_key
+   VITE_TMDB_API_KEY=votre_clé_api_tmdb
    ```
-   (You can get an API key by creating an account at [themoviedb.org](https://www.themoviedb.org/))
+   (Vous pouvez obtenir une clé API en créant un compte sur [themoviedb.org](https://www.themoviedb.org/))
 
-4. Start the development server:
+4. Démarrez le serveur de développement:
    ```bash
    npm run dev
    ```
 
-5. Open your browser and visit `http://localhost:5173`
+5. Ouvrez votre navigateur et visitez `http://localhost:5173`
 
-## Building for Production
+## Construction pour la Production
 
-To build the project for production:
+Pour construire le projet pour la production:
 
 ```bash
 npm run build
 ```
 
-The built files will be in the `dist` directory, ready to be deployed.
+Les fichiers compilés seront dans le répertoire `dist`, prêts à être déployés.
 
-## Project Structure
+## Structure du Projet
 
-- `src/components` - Reusable Vue components
-  - `common` - Shared UI components
-  - `layout` - Header, footer components
-  - `movies` - Movie-related components
-- `src/views` - Page components
-- `src/router` - Vue Router configuration
-- `src/stores` - Pinia stores
-- `src/services` - API services
-- `src/types` - TypeScript type definitions
-- `src/assets` - Static assets
+- `src/components` - Composants Vue réutilisables
+  - `common` - Composants UI partagés
+  - `layout` - Composants d'en-tête et de pied de page
+  - `movies` - Composants liés aux films
+- `src/views` - Composants de pages
+- `src/router` - Configuration de Vue Router
+- `src/stores` - Stores Pinia
+- `src/services` - Services API
+- `src/types` - Définitions de types TypeScript
+- `src/assets` - Ressources statiques
 
-## Key Components
+## Composants Clés
 
-- **AppHeader** - Main navigation and search
-- **HeroBanner** - Featured content display with auto-rotation
-- **MovieRow** - Horizontal scrollable movie lists
-- **MovieDetailsView** - Detailed information about a movie/show
+- **AppHeader** - Navigation principale et recherche
+- **HeroBanner** - Affichage du contenu vedette avec rotation automatique
+- **MovieRow** - Listes de films défilables horizontalement
+- **MovieDetailsView** - Informations détaillées sur un film/série
 
-## Future Improvements
+## Améliorations Futures
 
-- User authentication
-- My List functionality (favorites)
-- Video playback integration
-- User profiles
-- Responsive refinements for mobile devices
-- End-to-end testing
+- Authentification utilisateur
+- Fonctionnalité Ma Liste (favoris)
+- Intégration de lecture vidéo
+- Profils utilisateurs
+- Améliorations responsives pour appareils mobiles
+- Tests end-to-end
 
-## Credits
+## Crédits
 
 - [Vue.js](https://vuejs.org/)
 - [The Movie Database (TMDB)](https://www.themoviedb.org/)
-- [Netflix](https://www.netflix.com/) for the design inspiration
+- [Netflix](https://www.netflix.com/) pour l'inspiration du design
 
-## License
+## Licence
 
-This project is for educational purposes only. All Netflix branding, logos, and content are property of Netflix Inc.
+Ce projet est uniquement à des fins éducatives. Toutes les marques, logos et contenus Netflix sont la propriété de Netflix Inc.
 
 ---
 
-*This is not the official Netflix product. This is a personal project built for learning purposes.*
